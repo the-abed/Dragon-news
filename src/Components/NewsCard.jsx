@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { FaEye, FaStar, FaRegStar, FaBookmark, FaShareAlt, FaRegBookmark } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
+import { Link, Links } from "react-router";
 
 const NewsCard = ({ news }) => {
-  const [showFull, setShowFull] = useState(false);
-
+  
   const {
+    id,
     title,
     author,
     thumbnail_url,
@@ -63,16 +64,15 @@ const NewsCard = ({ news }) => {
 
         {/* Details */}
         <p className="text-sm text-gray-700 mt-3 leading-relaxed">
-          {showFull ? details : details.slice(0, 200) + "..."}
+          {details.slice(0, 200) + "..." }
         </p>
 
         {/* Read More Button */}
-        <button
+        <Link to={`/news-details/${id}`}
           className="btn btn-sm btn-outline btn-primary w-fit mt-3"
-          onClick={() => setShowFull(!showFull)}
         >
-          {showFull ? "Show Less" : "Read More"}
-        </button>
+          Read More
+        </Link>
 
         {/* Tags */}
         <div className="mt-3 flex flex-wrap gap-2">
